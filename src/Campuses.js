@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -8,11 +9,13 @@ class Campuses extends Component {
       <div>
         <ul>
           {this.props.campuses.map(campus => (
-            <li key={campus.id}>
-              {campus.name}
-              <br />
-              <img src={campus.imageUrl} />
-            </li>
+            <Link to={`/campuses/${campus.id}`} key={campus.id}>
+              <li>
+                {campus.name}
+                <br />
+                <img src={campus.imageUrl} />
+              </li>
+            </Link>
           ))}
         </ul>
       </div>

@@ -77,6 +77,14 @@ const syncAndSeed = () => {
           'https://s3.amazonaws.com/pq-imgs/images/bios/Larry-Fine.jpg-2415.jpg',
         gpa: 2.4,
       }),
+      Student.create({
+        firstName: 'Buster',
+        lastName: 'Keaton',
+        email: 'buster@ogslapstick.com',
+        imageUrl:
+          'https://media.sandiegoreader.com/img/croppedphotos/2018/10/29/MOVIES_Buster-Keaton_658_t658.jpg?ff95ca2b4c25d2d6ff3bfb257febf11d604414e5',
+        gpa: 4.0,
+      }),
       Campus.create({
         name: 'Stooge University',
         imageUrl:
@@ -87,12 +95,12 @@ const syncAndSeed = () => {
       Campus.create({
         name: 'Buster Keaton College',
         imageUrl:
-          'https://c.o0bg.com/rf/image_960w/Boston/2011-2020/2018/09/06/BostonGlobe.com/Metro/Images/cavanaugh_OumouKanoute07_met.jpg',
+          'https://globalmaryland.umd.edu/sites/default/files/styles/office_slider_style/public/hero-slideshow/Moved.jpg?itok=YB5BgaxR',
         address: '44 College Road',
         description: 'A sanctuary of learning',
       }),
     ])
-      .then(([moe, curly, larry, stoogesU, bkc]) => {
+      .then(([moe, curly, larry, buster, stoogesU, bkc]) => {
         moe.setCampus(stoogesU);
         curly.setCampus(stoogesU);
         larry.setCampus(bkc);

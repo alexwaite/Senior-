@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -8,9 +9,11 @@ class Students extends Component {
       <div>
         <ul>
           {this.props.students.map(student => (
-            <li key={student.id}>
-              {student.firstName} {student.lastName}
-            </li>
+            <Link to={`/students/${student.id}`} key={student.id}>
+              <li key={student.id}>
+                {student.firstName} {student.lastName}
+              </li>
+            </Link>
           ))}
         </ul>
       </div>

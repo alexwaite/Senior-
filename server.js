@@ -28,3 +28,15 @@ app.get('/api/campuses', (req, res, next) => {
     .then(campuses => res.send(campuses))
     .catch(next);
 });
+
+// app.get('/api/campuses/:id', (req, res, next) => {
+//   Campus.findByPk(req.params.id)
+//     .then(campus => res.send(campus))
+//     .catch(next);
+// });
+
+// app.get('/api/students/:id', (req, res, next) => {
+//   Student.findByPk(req.params.id)
+//     .then(student => res.send(student))
+//     .catch(next);
+// });
