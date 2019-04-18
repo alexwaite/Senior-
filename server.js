@@ -44,3 +44,15 @@ app.post('/api/students', (req, res, next) => {
     .then(student => res.send(student))
     .catch(next);
 });
+
+app.delete('/api/students/:id', (req, res, next) => {
+  Student.destroy({ where: { id: req.params.id } })
+    .then(res.sendStatus(202))
+    .catch(next);
+});
+
+app.delete('/api/campuses/:id', (req, res, next) => {
+  Campus.destroy({ where: { id: req.params.id } })
+    .then(res.sendStatus(202))
+    .catch(next);
+});
