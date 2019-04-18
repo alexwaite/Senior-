@@ -10,13 +10,24 @@ class Campuses extends Component {
       <div>
         <ul>
           {this.props.campuses.map(campus => (
-            <Link to={`/campuses/${campus.id}`} key={campus.id}>
-              <li>
-                {campus.name}
-                <br />
-                <img src={campus.imageUrl} />
-              </li>
-            </Link>
+            <div key={campus.id} id="campus">
+              <Link to={`/campuses/${campus.id}`}>
+                <li>
+                  {campus.name}
+                  <br />
+                  <div
+                    style={{
+                      backgroundImage: `url(${campus.imageUrl})`,
+                      height: '300px',
+                      width: '500px',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeate: 'no-repeat',
+                    }}
+                  />
+                </li>
+              </Link>
+            </div>
           ))}
         </ul>
         <CreateCampus />

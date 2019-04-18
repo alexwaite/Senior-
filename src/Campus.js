@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 class Campus extends Component {
   render() {
-    console.log(this.props);
     return !this.props.campus ? (
       <hr />
     ) : (
@@ -43,7 +42,7 @@ const mapStateToProps = (state, props) => {
     );
 
     return { ...state, campus: campus, campusStudents: students };
-  }
+  } else return state;
 };
 
 export default connect(mapStateToProps)(Campus);

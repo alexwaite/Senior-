@@ -15,7 +15,16 @@ class Student extends Component {
           {this.props.student.firstName + ' ' + this.props.student.lastName}
         </span>
         <br />
-        <img src={this.props.student.imageUrl} />
+        <div
+          style={{
+            backgroundImage: `url(${this.props.student.imageUrl})`,
+            height: '300px',
+            width: '300px',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeate: 'no-repeat',
+          }}
+        />
         <br />
         <span style={{ fontWeight: 'bold' }}>Email: </span>
         <span>{this.props.student.email}</span>
@@ -48,7 +57,7 @@ const mapStateToProps = (state, props) => {
     );
 
     return { ...state, campus: campus, student: student };
-  }
+  } else return state;
 };
 
 export default connect(mapStateToProps)(Student);
