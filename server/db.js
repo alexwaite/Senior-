@@ -14,7 +14,6 @@ const Campus = conn.define('campus', {
   address: {
     type: Sequelize.STRING,
     allowNull: false,
-    notEmpty: true,
   },
   description: {
     type: Sequelize.TEXT,
@@ -55,7 +54,7 @@ const syncAndSeed = () => {
     return Promise.all([
       Student.create({
         firstName: 'Moe',
-        lastName: 'Smith',
+        lastName: 'Howard',
         email: 'moe@stooges.com',
         imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/1/1b/Moe_Howard_1937_%28cropped%29.jpg',
@@ -63,7 +62,7 @@ const syncAndSeed = () => {
       }),
       Student.create({
         firstName: 'Curly',
-        lastName: 'Smith',
+        lastName: 'Howard',
         email: 'curly@stooges.com',
         imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/e/ef/Curlydisorder.jpg',
@@ -71,7 +70,7 @@ const syncAndSeed = () => {
       }),
       Student.create({
         firstName: 'Larry',
-        lastName: 'Smith',
+        lastName: 'Fine',
         email: 'larry@stooges.com',
         imageUrl:
           'https://s3.amazonaws.com/pq-imgs/images/bios/Larry-Fine.jpg-2415.jpg',

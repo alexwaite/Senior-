@@ -1,3 +1,1 @@
-# react-minimal template
-- npm install
-- npm run start:dev
+# Senior Enrichment Project

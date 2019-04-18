@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const morgan = require('morgan');
 const { syncAndSeed, Student, Campus } = require('./server/db');
 
 const port = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(morgan('dev'));
 
 app.get('/app.js', (req, res, next) =>
   res.sendFile(path.join(__dirname, 'dist', 'main.js'))
@@ -29,14 +33,14 @@ app.get('/api/campuses', (req, res, next) => {
     .catch(next);
 });
 
-// app.get('/api/campuses/:id', (req, res, next) => {
-//   Campus.findByPk(req.params.id)
-//     .then(campus => res.send(campus))
-//     .catch(next);
-// });
+app.post('/api/campuses', (req, res, next) => {
+  Campus.create(req.body)
+    .then(campus => res.send(campus))
+    .catch(next);
+});
 
-// app.get('/api/students/:id', (req, res, next) => {
-//   Student.findByPk(req.params.id)
-//     .then(student => res.send(student))
-//     .catch(next);
-// });
+app.post('/api/students', (req, res, next) => {
+  Student.create(req.body)
+    .then(student => res.send(student))
+    .catch(next);
+});

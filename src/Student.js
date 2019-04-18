@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Student extends Component {
@@ -25,9 +25,13 @@ class Student extends Component {
         <br />
         <span style={{ fontWeight: 'bold' }}>Campus: </span>
         <span>
-          {this.props.student.campusId
-            ? this.props.campus.name
-            : 'Not currently enrolled'}
+          {this.props.student.campusId ? (
+            <Link to={`/campuses/${this.props.student.campusId}`}>
+              {this.props.campus.name}
+            </Link>
+          ) : (
+            'Not currently enrolled'
+          )}
         </span>
       </div>
     );

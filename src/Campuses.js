@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import CreateCampus from './CreateCampus';
 
 class Campuses extends Component {
   render() {
@@ -18,6 +19,7 @@ class Campuses extends Component {
             </Link>
           ))}
         </ul>
+        <CreateCampus />
       </div>
     );
   }

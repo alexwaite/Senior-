@@ -13,6 +13,7 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchCampuses();
     this.props.fetchStudents();
+    console.log(this.props);
   }
   render() {
     return (

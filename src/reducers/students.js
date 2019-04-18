@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const SET_STUDENTS = 'SET_STUDENTS';
 
-const setStudents = students => {
+export const setStudents = students => {
   return {
     type: SET_STUDENTS,
     students,
