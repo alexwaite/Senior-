@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCampuses } from './reducers/campuses';
-import axios from 'axios';
+import { createCampusThunk } from './reducers/campuses';
 
 class CreateCampus extends Component {
   constructor(props) {
@@ -20,10 +19,7 @@ class CreateCampus extends Component {
 
   onSave = ev => {
     ev.preventDefault();
-    return axios
-      .post('/api/campuses', this.state)
-      .then(() => this.props.fetchCampuses())
-      .catch(error => console.error(error));
+    this.props.createCampusThunk(this.state);
   };
 
   render() {
@@ -61,6 +57,23 @@ class CreateCampus extends Component {
             className="form-control"
             value={this.state.imageUrl}
           />
+
+          <div
+            style={{
+              backgroundImage: `url(${
+                this.state.imageUrl
+                  ? this.state.imageUrl
+                  : 'https://www.urbansplash.co.uk/images/placeholder-16-9.jpg'
+              })`,
+              height: '300px',
+              width: '500px',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeate: 'no-repeat',
+            }}
+          />
+          <br />
+
           <label>
             <em>Campus Description</em>
           </label>
@@ -71,10 +84,11 @@ class CreateCampus extends Component {
             className="form-control"
             value={this.state.description}
           />
+
+          <button id="saveBtn" type="submit" className="btn btn-primary">
+            Save
+          </button>
         </div>
-        <button id="saveBtn" type="submit" className="btn btn-primary">
-          Save
-        </button>
       </form>
     );
   }
@@ -82,7 +96,7 @@ class CreateCampus extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCampuses: () => dispatch(fetchCampuses()),
+    createCampusThunk: campus => dispatch(createCampusThunk(campus)),
   };
 };
 

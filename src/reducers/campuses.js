@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const GOT_CAMPUSES = 'GOT_CAMPUSES';
 const CREATED_CAMPUS = 'CREATE_CAMPUS';
+const DELETED_CAMPUS = 'DELETED_CAMPUS';
 
 const gotCampuses = campuses => {
   return {
@@ -10,13 +11,19 @@ const gotCampuses = campuses => {
   };
 };
 
-// const createdCampus = campus => {
+const createdCampus = campus => {
+  return {
+    type: CREATED_CAMPUS,
+    campus,
+  };
+};
 
-//   return {
-//     type: CREATED_CAMPUS,
-//     campus,
-//   };
-// };
+const deletedCampus = id => {
+  return {
+    type: DELETED_CAMPUS,
+    id,
+  };
+};
 
 export const fetchCampuses = () => {
   return dispatch => {
@@ -26,22 +33,30 @@ export const fetchCampuses = () => {
   };
 };
 
-// export const createCampus = campus => {
+export const deleteCampusThunk = id => {
+  return dispatch => {
+    return axios
+      .delete(`/api/campuses/${id}`)
+      .then(() => dispatch(deletedCampus(id)));
+  };
+};
 
-//   return dispatch => {
-//     return axios.post('/api/campuses', campus).then(res => {
-//       console.log('createCampus', res.data);
-//       dispatch(createdCampus(res.data));
-//     });
-//   };
-// };
+export const createCampusThunk = campus => {
+  return dispatch => {
+    return axios.post('/api/campuses', campus).then(res => {
+      dispatch(createdCampus(res.data));
+    });
+  };
+};
 
 const campusReducer = (state = [], action) => {
   switch (action.type) {
     case GOT_CAMPUSES:
       return action.campuses;
     case CREATED_CAMPUS:
-      return [...state.campuses, action.campus];
+      return [...state, action.campus];
+    case DELETED_CAMPUS:
+      return state.filter(campus => campus.id !== action.id);
     default:
       return state;
   }

@@ -9,7 +9,8 @@ const Campus = conn.define('campus', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: '',
+    defaultValue:
+      'http://www.careers.cam.ac.uk/recruiting/images/University.jpg',
   },
   address: {
     type: Sequelize.STRING,
@@ -42,7 +43,8 @@ const Student = conn.define('student', {
     defaultValue: '',
   },
   gpa: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.DECIMAL,
+    allowNull: true,
   },
 });
 

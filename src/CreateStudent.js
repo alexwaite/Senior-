@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchStudents } from './reducers/students';
-import axios from 'axios';
+import { createStudentThunk } from './reducers/students';
 
 class CreateCampus extends Component {
   constructor(props) {
@@ -21,10 +20,7 @@ class CreateCampus extends Component {
 
   onSave = ev => {
     ev.preventDefault();
-    return axios
-      .post('/api/students', this.state)
-      .then(() => this.props.fetchStudents())
-      .catch(error => console.error(error));
+    this.props.createStudentThunk(this.state);
   };
 
   render() {
@@ -93,7 +89,7 @@ class CreateCampus extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchStudents: () => dispatch(fetchStudents()),
+    createStudentThunk: student => dispatch(createStudentThunk(student)),
   };
 };
 

@@ -4,18 +4,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CreateCampus from './CreateCampus';
 
-import axios from 'axios';
-import fetchCampuses from './reducers/campuses';
+import { deleteCampusThunk } from './reducers/campuses';
 
 class Campuses extends Component {
-  deleteCampus = id => {
-    return axios
-      .delete(`/api/campuses/${id}`)
-      .then(() => this.props.fetchCampuses());
-  };
-
   render() {
-    return this.props.campuses ? (
+    return this.props.campuses !== [] ? (
       <div>
         <ul>
           {this.props.campuses.map(campus => (
@@ -40,7 +33,7 @@ class Campuses extends Component {
               <span>&nbsp;</span>
               <button
                 type="submit"
-                onClick={() => this.deleteCampus(campus.id)}
+                onClick={() => this.props.deleteCampusThunk(campus.id)}
               >
                 X
               </button>
@@ -60,7 +53,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return { fetchCampuses: () => dispatch(fetchCampuses()) };
+  return {
+    deleteCampusThunk: id => dispatch(deleteCampusThunk(id)),
+  };
 };
 
 export default connect(
